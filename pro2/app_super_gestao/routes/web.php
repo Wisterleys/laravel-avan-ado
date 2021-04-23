@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Route::get('/', "PrincipalController@principal");
-Route::get('/{nome}/{id}', function(string $nome, int $id){
-    echo "seu nome é $nome e seu id é $id";
-})->where("nome","[A-Za-z]+")->where("id","[0-9]+");
+Route::get('/', "PrincipalController@principal");
 Route::get('/sobrenos', "SobreNosController@sobrenos");
 Route::get('/contato', "ContatoController@contato");
