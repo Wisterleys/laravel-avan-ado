@@ -24,7 +24,7 @@ Route::prefix("/app")->group(function(){
     Route::get('/fornecedores', function(){return "fornecedores";})->name("app.fornec");
     Route::get('/produtos', function(){return "produtos";})->name("app.produtos");
 });
-Route::get('/teste','TesteController@teste')->name('site.teste');
+Route::get('/teste/{p1}/{p2}','TesteController@teste')->name('site.teste');
 Route::fallback(function(){
     echo "A rota que tentou alcançar não existe. Volte para a pagina principal clicando <a href='".route('site.index')."'>aqui</a>";
 });
