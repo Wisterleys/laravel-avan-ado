@@ -21,7 +21,7 @@ Route::get('/contato', "ContatoController@contato")->name("site.contato");
 Route::prefix("/app")->group(function(){
     Route::get('/login', function(){return "login";})->name("app.login");
     Route::get('/clientes', function(){return "clientes";})->name("app.cliente");
-    Route::get('/fornecedores', function(){return "fornecedores";})->name("app.fornec");
+    Route::get('/fornecedor',"FornecedorController@index")->name("app.fornec");
     Route::get('/produtos', function(){return "produtos";})->name("app.produtos");
 });
 Route::get('/teste/{p1}/{p2}','TesteController@teste')->name('site.teste');
