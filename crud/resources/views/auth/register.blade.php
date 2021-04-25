@@ -63,7 +63,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="register">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -74,4 +74,5 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/register.js')}}"></script>
 @endsection

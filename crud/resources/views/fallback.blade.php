@@ -14,7 +14,7 @@
                     @endif
                     <p>Desculpe! Essa rota não existe.</p>
                     <br>
-                    <p>Volte para <b>Home</b> clicando <a href='/'>aqui</a></p>
+                    <p>Volte para <b>Home</b> clicando <a href='home'>aqui</a></p>
                    
                 </div>
             </div>
