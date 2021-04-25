@@ -20,4 +20,5 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/home.js')}}"></script>
 @endsection
