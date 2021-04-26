@@ -9,18 +9,7 @@
 
                 <div class="card-body">
                     <div class="card-body" id="print">
-                        <div class="container-fluid row mb-4 border-bottom">
-                            <blockquote class="blockquote text-justify  col-10">
-                                <h4>Título</h4>
-                                <p contenteditable="false" class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                <footer class="blockquote-footer">Alguém famoso na <cite title="Título da fonte">Título da fonte</cite></footer>
-                              </blockquote>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-primary btn-xs btn-flat mb-3">Editar</button>
-                                    <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                                </div>
-                               
-                          </div>
+                        
                           
                         
                     </div>
@@ -30,14 +19,16 @@
                 @csrf
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Título</label>
-                  <input type="text" class="form-control" name="titulo" placeholder="Informativo..." maxlength="200">
+                  <input type="text" class="form-control" name="titulo" id="titulo" maxlength="200">
                 </div>
                 
                 <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Exemplo de textarea</label>
-                  <textarea class="form-control" name="corpo" rows="3"></textarea>
+                  <textarea class="form-control" name="corpo" id="corpo" rows="3" placeholder="Texto..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block" id="post">Postar</button>
+                <div class="container-fluid text-center">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="post">Postar</button>
+                    <button type="reset" class="btn btn-primary btn-default mt-3" >limpar</button>
+                </div>
               </form>
         </div>
     </div>
