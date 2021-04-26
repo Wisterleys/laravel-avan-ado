@@ -8,14 +8,22 @@
                 <div class="card-header">{{ __('Notícias') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                    
+                    <div class="card-body" id="print">
+                        <div class="container-fluid row mb-4 border-bottom">
+                            <blockquote class="blockquote text-justify  col-10">
+                                <h4>Título</h4>
+                                <p contenteditable="false" class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                <footer class="blockquote-footer">Alguém famoso na <cite title="Título da fonte">Título da fonte</cite></footer>
+                              </blockquote>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-primary btn-xs btn-flat mb-3">Editar</button>
+                                    <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
+                                </div>
+                               
+                          </div>
+                          
+                        
+                    </div>
                 </div>
             </div>
             <form style="margin-top: 20px" id="form">
