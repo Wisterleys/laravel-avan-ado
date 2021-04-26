@@ -37,7 +37,6 @@
                   <label for="exampleFormControlTextarea1">Exemplo de textarea</label>
                   <textarea class="form-control" name="corpo" rows="3"></textarea>
                 </div>
-                <input type="hidden" name="getemail" id="getemail">
                 <button type="submit" class="btn btn-primary btn-lg btn-block" id="post">Postar</button>
               </form>
         </div>

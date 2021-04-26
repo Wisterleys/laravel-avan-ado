@@ -19,8 +19,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/',function(){return view('auth.login');});
 
-Route::get('/get/{email}',function($email){
-    $email = DB::table('noticias')->select('titulo','corpo')->where('email',$email)->get();
+Route::get('/getemail',function(){
+    $email = DB::table('noticias')->select('titulo','corpo')->where('email',auth()->user()->email)->get();
     echo json_encode($email);
 });
 
