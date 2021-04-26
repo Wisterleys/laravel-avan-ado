@@ -2,12 +2,13 @@ $(window).on("load", function(){
     //let email = localStorage.getItem("email")?localStorage.getItem("email"):false;
     //email?ajaxGet(email):0
     ajaxGet()
-    document.querySelector("#form").addEventListener('submit',e=>{
+    $("#form").on('submit',e=>{
         e.preventDefault();
         console.log("!")
         ajaxPost($("#form")[0]);
     })
  });
+
  function ajaxPost(form){
     let ajax = new XMLHttpRequest();
     ajax.open("POST",`poster`,true);
@@ -18,6 +19,7 @@ $(window).on("load", function(){
         ajaxGet();
     }
  }
+
  function ajaxGet(){
     let ajax = new XMLHttpRequest();
     ajax.open("GET",`/getemail`);

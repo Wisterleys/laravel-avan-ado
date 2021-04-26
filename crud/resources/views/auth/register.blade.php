@@ -74,5 +74,4 @@
         </div>
     </div>
 </div>
-<script src="{{asset('js/register.js')}}"></script>
 @endsection
