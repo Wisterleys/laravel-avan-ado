@@ -1,8 +1,15 @@
 class AjaxController{
     constructor(){
         this._place;
+        this._btn=false;
     }
-    ajaxPost(form){
+    ajaxPost(form,btn=false){
+        if(btn){
+            $(btn)[0].innerText="Postando..."
+            $(btn)[0].disabled=true;
+            this.btn=btn;
+        }
+        
         let ajax = new XMLHttpRequest();
         ajax.open("POST",`poster`,true);
         ajax.setRequestHeader('X-CSRF-TOKEN',$('meta[name="csrf-token"]').attr('content'));
@@ -31,6 +38,10 @@ class AjaxController{
             $("#print")[0].innerHTML=''
             JSON.parse(ajax.responseText).forEach(n =>this.imp(place,n));
             this.place=place;
+            if(this.btn){
+                $(this.btn)[0].disabled=false
+                $(this.btn)[0].innerText="Postar"
+            }
         }
     
      }
@@ -84,6 +95,8 @@ class AjaxController{
         return tag
     }
     //GETs and SETs
+    get btn(){return this._btn}
+    set btn(valeu){this._btn=valeu}
     get place(){return this._place}
     set place(valeu){this._place=valeu}
 }

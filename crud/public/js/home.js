@@ -3,8 +3,7 @@ $(window).on("load", function(){
     ajax.ajaxGet($("#print")[0])
     $("#form").on('submit',e=>{
         e.preventDefault();
-        console.log("!")
-        ajax.ajaxPost($("#form")[0]);
+        ajax.ajaxPost($("#form")[0],'#post');
     })
  });
  
