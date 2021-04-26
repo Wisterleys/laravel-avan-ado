@@ -28,8 +28,8 @@
                   <label for="exampleFormControlTextarea1">Exemplo de textarea</label>
                   <textarea class="form-control" name="corpo" rows="3"></textarea>
                 </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="post">Postar</button>
               </form>
-              <button type="button" class="btn btn-primary btn-lg btn-block" id="post">Postar</button>
         </div>
     </div>
 </div>
