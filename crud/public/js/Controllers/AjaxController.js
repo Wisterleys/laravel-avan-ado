@@ -63,7 +63,7 @@ class AjaxController{
        let div = this.createTags({place:places,tag:'div',class:"container-fluid row mb-4 border-bottom"})
        let block = this.createTags({place:div,tag:'blockquote',class:'blockquote text-justify  col-10',insertTag:`<h4>${valuesObj.titulo}</h4>`})
        this.createTags({place:block,tag:"p",contenteditable:false,class:"mb-0",insertTag:valuesObj.corpo})
-       this.createTags({place:block,tag:"footer",class:"blockquote-footer",insertTag:`${valuesObj.email}`})
+       this.createTags({place:block,tag:"footer",class:"blockquote-footer",insertTag:`${valuesObj.autor}`})
        let d=this.createTags({place:div,tag:"div",class:"col-2"})
        this.createTags({place:d,tag:"button",type:"button",class:"btn btn-primary btn-xs btn-flat mb-3",insertTag:"Editar"})
        this.createTags({place:d,tag:"button",type:"button",class:"btn btn-danger btn-xs btn-flat",insertTag:"Editar"})

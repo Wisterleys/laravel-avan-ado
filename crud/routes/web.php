@@ -20,7 +20,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/',function(){return view('auth.login');});
 
 Route::get('/getemail',function(){
-    $email = DB::table('noticias')->select('titulo','corpo','email')->where('email',auth()->user()->email)->get();
+    $email = DB::table('noticias')->select('titulo','corpo','email','autor')->where('email',auth()->user()->email)->get();
     echo json_encode($email);
 });
 

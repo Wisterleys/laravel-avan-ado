@@ -37,6 +37,7 @@ class NoriciaController extends Controller
     {
         $noticia = new Noticia();
         $noticia->titulo = $request->titulo;
+         $noticia->autor = auth()->user()->name;
         $noticia->corpo = $request->corpo;
         $noticia->email = auth()->user()->email;
         $noticia->save();
