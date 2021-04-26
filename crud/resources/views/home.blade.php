@@ -18,18 +18,18 @@
                     
                 </div>
             </div>
-            <form style="margin-top: 20px">
+            <form style="margin-top: 20px" id="form">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Título</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Informativo..." maxlength="200">
+                  <input type="text" class="form-control" name="titulo" placeholder="Informativo..." maxlength="200">
                 </div>
                 
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Exemplo de textarea</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" name="corpo" rows="3"></textarea>
                 </div>
               </form>
-              <button type="button" class="btn btn-primary btn-lg btn-block">Postar</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="post">Postar</button>
         </div>
     </div>
 </div>

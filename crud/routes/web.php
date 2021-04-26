@@ -12,9 +12,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function(){return view('welcome');});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/',function(){return view('auth.login');});
+
+Route::get('/get/{email}',function($email){
+    $email = DB::table('noticias')->select('titulo','corpo')->where('email',$email)->get();
+    echo json_encode($email);
+});
+
 
 Route::fallback(function(){return view('fallback');});
