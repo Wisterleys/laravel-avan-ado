@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoriciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,8 @@ Route::get('/get/{email}',function($email){
     $email = DB::table('noticias')->select('titulo','corpo')->where('email',$email)->get();
     echo json_encode($email);
 });
-Route::post('/post',function(Request $request){
-    //$email = DB::table('users')->where('email',$email)->get();
-    echo json_encode($request);
-});
+
+Route::post('poster', [App\Http\Controllers\NoriciaController::class, 'store']);
+Route::resource('posts', NoriciaController::class);
 
 Route::fallback(function(){return view('fallback');});
