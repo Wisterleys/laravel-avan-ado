@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Noticia;
 
 class NoriciaController extends Controller
 {
@@ -34,7 +35,13 @@ class NoriciaController extends Controller
      */
     public function store(Request $request)
     {
-        echo json_encode($request->post('getemail'));
+        $noticia = new Noticia();
+        $noticia->titulo = $request->titulo;
+        $noticia->corpo = $request->corpo;
+        $noticia->email = $request->getemail;
+        $noticia->save();
+        echo json_encode("criado com sucesso!");
+        
     }
 
     /**
