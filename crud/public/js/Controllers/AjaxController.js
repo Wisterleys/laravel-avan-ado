@@ -3,6 +3,21 @@ class AjaxController{
         this._place;
         this._btn=false;
     }
+    ajaxPut(value,id){
+        let ajax = new XMLHttpRequest();
+        ajax.open("POST",`up`,true);
+        ajax.setRequestHeader('X-CSRF-TOKEN',$('meta[name="csrf-token"]').attr('content'));
+        let form = new FormData();
+        form.append('corpo',value);
+        form.append('id',id)
+        ajax.send(form);
+        ajax.onload=e=>{
+            console.log(ajax.responseText);
+            this.salvo(document.querySelector(".yes"))
+            document.querySelector(".yes").classList.remove('yes');
+           
+        }
+    }
     ajaxPost(form,btn=false){
         if(btn){
             $(btn)[0].innerText="Postando..."
@@ -43,6 +58,15 @@ class AjaxController{
                 $(this.btn)[0].innerText="Postar"
             }
             this.onInitial();
+        }
+    
+     }
+     ajaxGet(id){
+        let ajax = new XMLHttpRequest();
+        ajax.open("DELETE",`/posts/destroy/${id}`);
+        ajax.send()
+        ajax.onload=e=>{
+            console.log((JSON.parse(ajax.responseText))
         }
     
      }
@@ -97,20 +121,22 @@ class AjaxController{
         }
         return tag
     }
+    salvo(el){
+        new Save(this.createTags({place:el.querySelector(".salvo"),tag:"span"}))
+        
+    }
     //LISTENERS
     onInitial(){
         this.onEdit();
         this. onEditOut();
     }
-    salvo(el){
-        new Save(this.createTags({place:el.querySelector(".salvo"),tag:"span"}))
-        
-    }
+    
     onEditOut(){
         $(".p").on("blur",e=>{
+            this.ajaxPut(e.target.innerText,e.target.parentNode.parentNode.dataset.id)
             e.target.contentEditable=false
             e.target.style.border="none";
-            this.salvo(e.target.parentNode.parentNode)
+            e.target.parentNode.parentNode.classList.add('yes')
         })
     }
     onEdit(){

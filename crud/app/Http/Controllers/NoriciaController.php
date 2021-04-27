@@ -74,9 +74,12 @@ class NoriciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $noticia = new Noticia();
+        $noticia->where('id', $request->id)
+              ->update(['corpo' => $request->corpo]);
+        echo json_encode($request->corpo);
     }
 
     /**
@@ -87,6 +90,9 @@ class NoriciaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $noticia = new Noticia();
+        $noticia->where('id', $id)
+              ->delete();
+        echo json_encode($request->corpo);
     }
 }

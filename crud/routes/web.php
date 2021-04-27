@@ -23,7 +23,7 @@ Route::get('/getemail',function(){
     $email = DB::table('noticias')->select('titulo','corpo','email','autor','id')->where('email',auth()->user()->email)->get();
     echo json_encode($email);
 });
-
+Route::post('up', [App\Http\Controllers\NoriciaController::class, 'update']);
 Route::post('poster', [App\Http\Controllers\NoriciaController::class, 'store']);
 Route::resource('posts', NoriciaController::class);
 
