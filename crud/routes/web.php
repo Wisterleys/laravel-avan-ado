@@ -17,8 +17,14 @@ use App\Http\Controllers\NoriciaController;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/',function(){return view('auth.login');});
-
+Route::get('/',function(){
+    if(auth()->user()){
+        return view('home');
+    }
+    else
+    return view('auth.login');
+});
+Route::get('/painel',function(){return view('welcome');});
 Route::get('/getemail',function(){
     $email = DB::table('noticias')->select('titulo','corpo','email','autor','id')->where('email',auth()->user()->email)->get();
     echo json_encode($email);
