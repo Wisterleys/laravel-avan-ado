@@ -2,13 +2,16 @@ class AjaxController{
     constructor(){
         this._place;
         this._btn=false;
+        this._title;
+        this._body;
     }
     ajaxPut(value,id){
         let ajax = new XMLHttpRequest();
         ajax.open("POST",`up`,true);
         ajax.setRequestHeader('X-CSRF-TOKEN',$('meta[name="csrf-token"]').attr('content'));
         let form = new FormData();
-        form.append('corpo',value);
+        form.append('titulo',value.titulo);
+        form.append('corpo',value.corpo);
         form.append('id',id)
         ajax.send(form);
         ajax.onload=e=>{
@@ -68,7 +71,7 @@ class AjaxController{
         ajax.onload=e=>{
             let num = parseInt(ajax.responseText)
             document.querySelector(`div[data-id='${num}']`).remove()
-            
+
         }
     
      }
@@ -93,7 +96,8 @@ class AjaxController{
        this.createTags({place:block,tag:"p",contenteditable:false,class:"mb-0 p",insertTag:valuesObj.corpo})
        this.createTags({place:block,tag:"footer",class:"blockquote-footer",insertTag:`${valuesObj.autor}`})
        let d=this.createTags({place:div,tag:"div",class:"col-2"})
-       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-primary btn-xs btn-flat mb-3 edit",insertTag:"Editar"})
+       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-primary btn-xs btn-flat mb-2 edit",insertTag:"Editar"})
+       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-success btn-xs btn-flat mb-2 sal",insertTag:"Salvar"})
        this.createTags({place:d,tag:"button",type:"button",class:"btn btn-danger btn-xs btn-flat del",insertTag:"Excluir"})
        this.createTags({place:div,tag:"div",class:"salvo",style:"position:relative;left:-100px;"})
     }
@@ -140,21 +144,32 @@ class AjaxController{
         })
     }
     onEditOut(){
-        $(".p").on("blur",e=>{
-            this.ajaxPut(e.target.innerText,e.target.parentNode.parentNode.dataset.id)
-            e.target.contentEditable=false
-            e.target.style.border="none";
+        $(".sal").on("click",e=>{
+            this.ajaxPut({titulo:this.title.innerText,corpo:this.body.innerText},e.target.parentNode.parentNode.dataset.id)
+           this.body.contentEditable=false
+           this.body.style.border="none";
+           this.title.contentEditable=false
+           this.title.style.border="none";
             e.target.parentNode.parentNode.classList.add('yes')
         })
     }
     onEdit(){
         $(".edit").on("click",e=>{
-            e.target.parentNode.parentNode.querySelector(".p").contentEditable=true
-            e.target.parentNode.parentNode.querySelector("p").focus()
-            e.target.parentNode.parentNode.querySelector("p").style.border="1px solid green";
+            this.body= e.target.parentNode.parentNode.querySelector(".p");
+            this.title= e.target.parentNode.parentNode.querySelector("h4");
+            this.body.contentEditable=true
+            this.body.focus()
+            this.body.style.border="1px solid green";
+            this.title.contentEditable=true
+            this.title.focus()
+            this.title.style.border="1px solid green";
         })
     }
     //GETs and SETs
+    get title(){return this._title}
+    set title(valeu){this._title=valeu}
+    get body(){return this._body}
+    set body(valeu){this._body=valeu}
     get btn(){return this._btn}
     set btn(valeu){this._btn=valeu}
     get place(){return this._place}

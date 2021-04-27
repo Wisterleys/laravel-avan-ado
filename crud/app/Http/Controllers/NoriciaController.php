@@ -78,7 +78,7 @@ class NoriciaController extends Controller
     {
         $noticia = new Noticia();
         $noticia->where('id', $request->id)
-              ->update(['corpo' => $request->corpo]);
+              ->update(['corpo' => $request->corpo,'titulo' => $request->titulo]);
         echo json_encode($request->corpo);
     }
 
