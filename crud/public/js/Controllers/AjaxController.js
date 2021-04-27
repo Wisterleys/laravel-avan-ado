@@ -61,12 +61,14 @@ class AjaxController{
         }
     
      }
-     ajaxGet(id){
+     ajaxDelete(id){
         let ajax = new XMLHttpRequest();
-        ajax.open("DELETE",`/posts/destroy/${id}`);
-        ajax.send()
+        ajax.open("GET",`/del/${id}`,true);
+        ajax.send();
         ajax.onload=e=>{
-            console.log((JSON.parse(ajax.responseText))
+            let num = parseInt(ajax.responseText)
+            document.querySelector(`div[data-id='${num}']`).remove()
+            
         }
     
      }
@@ -129,8 +131,14 @@ class AjaxController{
     onInitial(){
         this.onEdit();
         this. onEditOut();
+        this.onDelete();
     }
-    
+    onDelete(){
+        $('.del').on('click',e=>{
+            let id = e.target.parentNode.parentNode.dataset.id
+            this.ajaxDelete(id);
+        })
+    }
     onEditOut(){
         $(".p").on("blur",e=>{
             this.ajaxPut(e.target.innerText,e.target.parentNode.parentNode.dataset.id)

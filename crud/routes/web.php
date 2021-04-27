@@ -25,6 +25,7 @@ Route::get('/getemail',function(){
 });
 Route::post('up', [App\Http\Controllers\NoriciaController::class, 'update']);
 Route::post('poster', [App\Http\Controllers\NoriciaController::class, 'store']);
+Route::get('/del/{id}', [App\Http\Controllers\NoriciaController::class, 'destroy']);
 Route::resource('posts', NoriciaController::class);
 
 Route::fallback(function(){return view('fallback');});

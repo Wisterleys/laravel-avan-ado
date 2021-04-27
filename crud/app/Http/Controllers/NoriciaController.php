@@ -93,6 +93,6 @@ class NoriciaController extends Controller
         $noticia = new Noticia();
         $noticia->where('id', $id)
               ->delete();
-        echo json_encode($request->corpo);
+        echo $id;
     }
 }
