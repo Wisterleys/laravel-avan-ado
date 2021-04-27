@@ -42,6 +42,7 @@ class AjaxController{
                 $(this.btn)[0].disabled=false
                 $(this.btn)[0].innerText="Postar"
             }
+            this.onInitial();
         }
     
      }
@@ -61,12 +62,14 @@ class AjaxController{
        </div>
         */
        let div = this.createTags({place:places,tag:'div',class:"container-fluid row mb-4 border-bottom"})
+       div.dataset.id=valuesObj.id
        let block = this.createTags({place:div,tag:'blockquote',class:'blockquote text-justify  col-10',insertTag:`<h4>${valuesObj.titulo}</h4>`})
-       this.createTags({place:block,tag:"p",contenteditable:false,class:"mb-0",insertTag:valuesObj.corpo})
+       this.createTags({place:block,tag:"p",contenteditable:false,class:"mb-0 p",insertTag:valuesObj.corpo})
        this.createTags({place:block,tag:"footer",class:"blockquote-footer",insertTag:`${valuesObj.autor}`})
        let d=this.createTags({place:div,tag:"div",class:"col-2"})
-       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-primary btn-xs btn-flat mb-3",insertTag:"Editar"})
-       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-danger btn-xs btn-flat",insertTag:"Editar"})
+       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-primary btn-xs btn-flat mb-3 edit",insertTag:"Editar"})
+       this.createTags({place:d,tag:"button",type:"button",class:"btn btn-danger btn-xs btn-flat del",insertTag:"Excluir"})
+       this.createTags({place:div,tag:"div",class:"salvo",style:"position:relative;left:-100px;"})
     }
     createTags(obj={}){ //Função modelo para criar TAGs na tela
         /*
@@ -93,6 +96,29 @@ class AjaxController{
             obj.place.appendChild(tag);
         }
         return tag
+    }
+    //LISTENERS
+    onInitial(){
+        this.onEdit();
+        this. onEditOut();
+    }
+    salvo(el){
+        new Save(this.createTags({place:el.querySelector(".salvo"),tag:"span"}))
+        
+    }
+    onEditOut(){
+        $(".p").on("blur",e=>{
+            e.target.contentEditable=false
+            e.target.style.border="none";
+            this.salvo(e.target.parentNode.parentNode)
+        })
+    }
+    onEdit(){
+        $(".edit").on("click",e=>{
+            e.target.parentNode.parentNode.querySelector(".p").contentEditable=true
+            e.target.parentNode.parentNode.querySelector("p").focus()
+            e.target.parentNode.parentNode.querySelector("p").style.border="1px solid green";
+        })
     }
     //GETs and SETs
     get btn(){return this._btn}
